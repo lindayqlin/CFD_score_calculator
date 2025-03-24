@@ -9,7 +9,7 @@
 // Import:
 mod cfd_score_calculator;
 // Usage:
-// calculate_cfd(spacer, protospacer, pam);
+// cfd_score_calculator::calculate_cfd(spacer, protospacer, pam);
 // Example:
 cfd_score_calculator::calculate_cfd("CTAACAGTTGCTTTTATCAC", "tT-ACAGcTGCaTTTATCAC", "GG");
 ```
