@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Cutting frequency determination (CFD) score calculator
 Written by Linda Lin 6/14/2022 (last modified on 3/23/2025)
