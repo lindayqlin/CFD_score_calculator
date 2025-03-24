@@ -48,8 +48,7 @@ pub fn calculate_cfd(spacer: &str, protospacer: &str, pam: &str) -> f64 {
         }
         else {
             // Incorporate score for given RNA-DNA basepair at this position
-            let key = format!("r{}:d{},{}",
-                              spacer_list[i], reverse_complement_nt(&nt.to_string()), i + 1);
+            let key = format!("r{}:d{},{}", spacer_list[i], reverse_complement_nt(nt), i + 1);
             score *= mm_scores.get(&key).expect("Invalid basepair");
         }
     }
@@ -79,16 +78,16 @@ fn parse_scoring_matrix(file_path: &str) -> HashMap<String, f64> {
     matrix
 }
 
-/// Get reverse complement of nucleotide (supports bulges)
-fn reverse_complement_nt(seq: &str) -> String {
-    seq.chars().map(|x| match x {
+/// Get reverse complement of a single nucleotide (supports bulges)
+fn reverse_complement_nt(nucleotide: char) -> char {
+    match nucleotide {
         'A' => 'T',
         'C' => 'G',
         'T' | 'U' => 'A',
         'G' => 'C',
         '-' => '-',
-        _ => x,
-    }).collect::<String>()
+        _ => nucleotide,
+    }
 }
 
 fn main() {
