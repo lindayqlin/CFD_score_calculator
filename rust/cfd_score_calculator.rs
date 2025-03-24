@@ -1,24 +1,23 @@
 //! # Cutting frequency determination (CFD) score calculator
-//! Written by Linda Lin 3/23/2025 (adapted from python)
+//! Written by Linda Lin 3/23/2025 (adapted from Python)
 //!
-//! Command line usage:
-//!     ./cfd_score_calculator <20nt_aligned_spacer_sequence> <20nt_aligned_protospacer_sequence>
-//!     <last_2nt_of_PAM>
-//! Example:
-//!     ./cfd_score_calculator CTAACAGTTGCTTTTATCAC tT-ACAGcTGCaTTTATCAC GG
+//! ## Usage:
+//! mod cfd_score_calculator;
+//! cfd_score_calculator::calculate_cfd("CTAACAGTTGCTTTTATCAC", "tT-ACAGcTGCaTTTATCAC", "GG");
 //!
-//! Module usage:
-//!     use cfd_score_calculator::calculate_cfd;
+//! ## Input:
+//! <20nt_aligned_spacer_sequence>, <20nt_aligned_protospacer_sequence>, <last_2nt_of_PAM>
+//! mismatch_scores.txt & pam_scores.txt in same directory as this file
 //!
-//! Input: mismatch_scores.txt & pam_scores.txt
-//! Output: CFD score
+//! ## Output:
+//! CFD score
 
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
 /// Calculate CFD score
-pub fn calculate_cfd(spacer: &str, protospacer: &str, pam: &str) -> f32 {
+pub fn calculate_cfd(spacer: &str, protospacer: &str, pam: &str) -> f64 {
     // Check for expected input lengths
     if spacer.len() != 20 || protospacer.len() != 20 || pam.len() != 2 {
         eprintln!("Incorrect input sequence length\n\
@@ -58,7 +57,7 @@ pub fn calculate_cfd(spacer: &str, protospacer: &str, pam: &str) -> f32 {
 }
 
 /// Parse scoring matrix from space-delimited file
-fn parse_scoring_matrix(file_path: &str) -> HashMap<String, f32> {
+fn parse_scoring_matrix(file_path: &str) -> HashMap<String, f64> {
     // Open file
     let file = match File::open(file_path) {
         Ok(file) => file,
@@ -73,7 +72,7 @@ fn parse_scoring_matrix(file_path: &str) -> HashMap<String, f32> {
     for line in reader.lines() {
         let line = line.unwrap();
         let parts: Vec<&str> = line.split_whitespace().collect();
-        matrix.insert(parts[0].to_string(), parts[1].parse::<f32>().unwrap());
+        matrix.insert(parts[0].to_string(), parts[1].parse::<f64>().unwrap());
     }
     matrix
 }
