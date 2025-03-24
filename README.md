@@ -6,7 +6,9 @@
 ## Input
 - 20 nt aligned spacer (gRNA) sequence
 - 20 nt aligned protospacer (DNA) sequence
-- Last 2nt of PAM sequence
+- Last 2 nt of PAM sequence
+
+(Case insensitive with gaps indicated by '-')
 
 ## Usage
 ### Rust
