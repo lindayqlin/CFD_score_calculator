@@ -49,5 +49,6 @@ python3 cfd_score_calculator.py CTAACAGTTGCTTTTATCAC tT-ACAGcTGCaTTTATCAC GG
 ## Implementation notes & references
 - CFD score was published in [Doench et al (2016) *Nature Biotechnology*](https://doi.org/10.1038/nbt.3437). The scoring matrices and Python code are adapted from the original publication
 - The mismatch scoring matrix was modified to allow for DNA/RNA bulges (intermediate gaps in the alignment) based on the empirical data in Table S19 of Doench et al. 2016
-    - As implemented in [CRISPRme](https://github.com/pinellolab/CRISPRme/blob/main/PostProcess/mismatch_score.pkl) ([Cancellieri, Zeng, and Lin et al. (2023) *Nature Genetics*](https://doi.org/10.1038/s41588-022-01257-y))
-- To allow for CFD score calculation when there is a gap in the alignment at the most PAM-distal nucleotide (for which no empirical data is available), this case is supported here with no penalty (a conservative implementation choice to maximize sensitivity when nominating candidate off-target sites)
+    - As implemented in [CRISPRme](https://github.com/pinellolab/CRISPRme/blob/main/PostProcess/mismatch_score.pkl) ([Cancellieri, Zeng, and Lin et al (2023) *Nature Genetics*](https://doi.org/10.1038/s41588-022-01257-y))
+- To allow for CFD score calculation when there is a gap in the alignment at the most PAM-distal nucleotide (for which no empirical data is available), this case is supported here with no penalty
+    - A conservative implementation choice to maximize sensitivity when nominating candidate off-target sites
