@@ -12,9 +12,11 @@
 //! ## Output:
 //! CFD score
 
-use std::collections::HashMap;
+use std::env::args;
+use std::process::exit;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
+use std::collections::HashMap;
 
 /// Calculate CFD score
 pub fn calculate_cfd(spacer: &str, protospacer: &str, pam: &str) -> f64 {
@@ -23,7 +25,7 @@ pub fn calculate_cfd(spacer: &str, protospacer: &str, pam: &str) -> f64 {
         eprintln!("Incorrect input sequence length\n\
                    Usage: cfd_score_calculator <20nt_aligned_spacer_sequence> \
                    <20nt_aligned_protospacer_sequence> <last_2nt_of_PAM>");
-        std::process::exit(1);
+        exit(1);
     }
 
     // Get empirical scoring matrices and pre-process sequences
@@ -63,7 +65,7 @@ fn parse_scoring_matrix(file_path: &str) -> HashMap<String, f64> {
         Ok(file) => file,
         Err(_) => {
             eprintln!("Requires {} in directory", file_path);
-            std::process::exit(1);
+            exit(1);
         }
     };
     // Read file
@@ -91,10 +93,10 @@ fn reverse_complement_nt(seq: &str) -> String {
 
 fn main() {
     // Get args
-    let args: Vec<String> = std::env::args().collect();
+    let args: Vec<String> = args().collect();
     if args.len() < 4 {
         eprintln!("Too few arguments\nUsage: cfd_score_calculator <20nt_aligned_spacer_sequence> <20nt_aligned_protospacer_sequence> <last_2nt_of_PAM>");
-        std::process::exit(1);
+        exit(1);
     }
     let spacer = &args[1];
     let protospacer = &args[2];

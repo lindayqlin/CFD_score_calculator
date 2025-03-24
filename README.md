@@ -16,13 +16,14 @@
 // Import:
 mod cfd_score_calculator;
 // Usage:
-// cfd_score_calculator::calculate_cfd(spacer, protospacer, pam);
+// cfd_score_calculator::calculate_cfd(<20nt_aligned_spacer_sequence>, <20nt_aligned_protospacer_sequence>, <last_2nt_of_PAM>);
 // Example:
 cfd_score_calculator::calculate_cfd("CTAACAGTTGCTTTTATCAC", "tT-ACAGcTGCaTTTATCAC", "GG");
 ```
 ### Command line (Rust binary)
 ```bash
 # Usage:
+chmod +x cfd_score_calculator
 # ./cfd_score_calculator <20nt_aligned_spacer_sequence> <20nt_aligned_protospacer_sequence> <last_2nt_of_PAM>
 # Example:
 ./cfd_score_calculator CTAACAGTTGCTTTTATCAC tT-ACAGcTGCaTTTATCAC GG
@@ -33,7 +34,7 @@ cfd_score_calculator::calculate_cfd("CTAACAGTTGCTTTTATCAC", "tT-ACAGcTGCaTTTATCA
 # Import:
 from cfd_score_calculator import calculate_cfd
 # Usage:
-# calculate_cfd(spacer, protospacer, pam)
+# calculate_cfd(<20nt_aligned_spacer_sequence>, <20nt_aligned_protospacer_sequence>, <last_2nt_of_PAM>)
 # Example:
 calculate_cfd("CTAACAGTTGCTTTTATCAC", "tT-ACAGcTGCaTTTATCAC", "GG")
 ```
@@ -45,7 +46,7 @@ calculate_cfd("CTAACAGTTGCTTTTATCAC", "tT-ACAGcTGCaTTTATCAC", "GG")
 python3 cfd_score_calculator.py CTAACAGTTGCTTTTATCAC tT-ACAGcTGCaTTTATCAC GG
 ```
 
-## References
+## Implementation notes & references
 - CFD score was published in [Doench et al (2016) *Nature Biotechnology*](https://doi.org/10.1038/nbt.3437). The scoring matrices and Python code are adapted from the original publication
 - The mismatch scoring matrix was modified to allow for DNA/RNA bulges (intermediate gaps in the alignment) based on the empirical data in Table S19 of Doench et al. 2016
     - As implemented in [CRISPRme](https://github.com/pinellolab/CRISPRme/blob/main/PostProcess/mismatch_score.pkl) ([Cancellieri, Zeng, and Lin et al. (2023) *Nature Genetics*](https://doi.org/10.1038/s41588-022-01257-y))
