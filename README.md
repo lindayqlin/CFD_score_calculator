@@ -1,7 +1,12 @@
 # Cutting frequency determination (CFD) score calculator
-- A simple, standalone CFD score calculator that supports gaps in RNA-DNA alignment
+- A simple, standalone CFD score calculator that supports gaps in RNA-DNA alignment at any non-PAM position
 - Implemented in both Rust (faster) and Python (original)
 - CFD score is an empirical measure of the likelihood of a given guide RNA (spacer) sequence complexed with SpCas9 cleaving a given DNA sequence. CFD scores are helpful for prioritizing candidate off-target sites for further evaluation. They range from 0 (minimal cutting potential) to 1 (for on-target site)
+
+## Input
+- 20 nt aligned spacer (gRNA) sequence
+- 20 nt aligned protospacer (DNA) sequence
+- Last 2nt of PAM sequence
 
 ## Usage
 ### Rust
